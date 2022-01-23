@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 
-const [, , third] = ["Alex", "Ali", "Anna"];
+function App() {
+  const [status, setStatus] = useState("Not Delivered");
 
-console.log(third);
+  return (
+    <div className="App">
+      <h1>The package is: {status}.</h1>
+      <button onClick={() => setStatus("Delivered")}>Deliver</button>
+    </div>
+  );
+}
+
 
 ReactDOM.render(
   <React.StrictMode>
