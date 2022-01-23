@@ -3,24 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 function App() {
-  const [name, setName] = useState("Jan");
-  const [admin, setAdmin] = useState(false);
-  useEffect(() => {
-    console.log(`Celebrate ${name}`);
-  }, [name]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    console.log(`The user is: ${admin ? "admin" : "not admin"}`)
-  }, [admin]);
+    fetch('https://api.github.com/users')
+      .then(response => response.json())
+      .then(setData)
+  }, []);
 
   return (
     <div className="App">
-      <section>
-        <p>Congratulations {name}!</p>
-        <button onClick={() => setName("Will")}>Change Winner</button>
-        <p>{admin ? "Logged In" : "Not Logged In"}</p>
-        <button onClick={() => setAdmin(true)}>Log In</button>
-      </section>
+      <ul>
+        {
+          data.map((user, idx) => (
+            <li key={user.id}>{user.login}</li>
+          ))
+        }
+      </ul>
+      <button onClick={() => setData([])}>Clear</button>
     </div>
   );
 }
@@ -116,4 +116,30 @@ function App() {
   );
 }
 
+*/
+
+// Introducing useEffect & Working with the dependency array
+/*
+function App() {
+  const [name, setName] = useState("Jan");
+  const [admin, setAdmin] = useState(false);
+  useEffect(() => {
+    console.log(`Celebrate ${name}`);
+  }, [name]);
+
+  useEffect(() => {
+    console.log(`The user is: ${admin ? "admin" : "not admin"}`)
+  }, [admin]);
+
+  return (
+    <div className="App">
+      <section>
+        <p>Congratulations {name}!</p>
+        <button onClick={() => setName("Will")}>Change Winner</button>
+        <p>{admin ? "Logged In" : "Not Logged In"}</p>
+        <button onClick={() => setAdmin(true)}>Log In</button>
+      </section>
+    </div>
+  );
+}
 */
