@@ -4,16 +4,22 @@ import './index.css';
 
 function App() {
   const [name, setName] = useState("Jan");
+  const [admin, setAdmin] = useState(false);
+  useEffect(() => {
+    console.log(`Celebrate ${name}`);
+  }, [name]);
 
   useEffect(() => {
-    document.title = `Celebrate ${name}`;
-  });
+    console.log(`The user is: ${admin ? "admin" : "not admin"}`)
+  }, [admin]);
 
   return (
     <div className="App">
       <section>
         <p>Congratulations {name}!</p>
         <button onClick={() => setName("Will")}>Change Winner</button>
+        <p>{admin ? "Logged In" : "Not Logged In"}</p>
+        <button onClick={() => setAdmin(true)}>Log In</button>
       </section>
     </div>
   );
@@ -22,7 +28,7 @@ function App() {
 
 ReactDOM.render(
   <React.StrictMode>
-    <App name="Danish" />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -32,6 +38,16 @@ ReactDOM.render(
 const [, , third] = ["Alex", "Ali", "Anna"];
 
 console.log(third);
+
+<App name="Danish" />
+
+function App({ name }) {
+  return (
+    <div className="App">
+      <h1>Hello {name}!</h1>
+    </div>
+  );
+}
 */
 
 // Incorporating the useState hook
