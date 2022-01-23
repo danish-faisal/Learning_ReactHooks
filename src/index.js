@@ -1,6 +1,72 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+
+function App() {
+  const [name, setName] = useState("Jan");
+
+  useEffect(() => {
+    document.title = `Celebrate ${name}`;
+  });
+
+  return (
+    <div className="App">
+      <section>
+        <p>Congratulations {name}!</p>
+        <button onClick={() => setName("Will")}>Change Winner</button>
+      </section>
+    </div>
+  );
+}
+
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App name="Danish" />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+// Array and Object destructuring
+/*
+const [, , third] = ["Alex", "Ali", "Anna"];
+
+console.log(third);
+*/
+
+// Incorporating the useState hook
+/*
+function App() {
+  const [status, setStatus] = useState("Not Delivered");
+
+  return (
+    <div className="App">
+      <h1>The package is: {status}.</h1>
+      <button onClick={() => setStatus("Delivered")}>Deliver</button>
+    </div>
+  );
+}
+*/
+
+// Building a checkbox with useState
+/*
+function App() {
+  const [status, setStatus] = useState("Not Delivered");
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div className="App">
+      <h1>The package is: {status}.</h1>
+      <button onClick={() => setStatus("Delivered")}>Deliver</button>
+      <input type="checkbox" value={checked} onChange={() => setChecked((checked) => !checked)} />
+      <p>{checked ? "checked" : "not checked"}</p>
+    </div>
+  );
+}
+*/
+
+// Working with component trees & Sending interactions up component trees
+/*
 import { FaStar } from 'react-icons/fa';
 
 const createArray = (length) => [...Array(length)];
@@ -34,10 +100,4 @@ function App() {
   );
 }
 
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App name="Danish" />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+*/
