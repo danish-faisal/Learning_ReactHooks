@@ -1,28 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
 function App() {
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetch('https://api.github.com/users')
-      .then(response => response.json())
-      .then(setData)
-  }, []);
+  const [number, setNumber] = useReducer((number, newNumber) => number + newNumber, 0);
 
-  return (
-    <div className="App">
-      <ul>
-        {
-          data.map((user, idx) => (
-            <li key={user.id}>{user.login}</li>
-          ))
-        }
-      </ul>
-      <button onClick={() => setData([])}>Clear</button>
-    </div>
-  );
+  return <h1 onClick={() => setNumber(1)}>{number}</h1>;
 }
 
 
@@ -139,6 +123,32 @@ function App() {
         <p>{admin ? "Logged In" : "Not Logged In"}</p>
         <button onClick={() => setAdmin(true)}>Log In</button>
       </section>
+    </div>
+  );
+}
+*/
+
+// Working with Dependency Array and Fetching data with useEffect
+/*
+function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('https://api.github.com/users')
+      .then(response => response.json())
+      .then(setData)
+  }, []);
+
+  return (
+    <div className="App">
+      <ul>
+        {
+          data.map((user, idx) => (
+            <li key={user.id}>{user.login}</li>
+          ))
+        }
+      </ul>
+      <button onClick={() => setData([])}>Clear</button>
     </div>
   );
 }
