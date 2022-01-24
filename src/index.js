@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 function App() {
+  const [checked, toggle] = useReducer((checked) => !checked, false);
 
-  const [number, setNumber] = useReducer((number, newNumber) => number + newNumber, 0);
-
-  return <h1 onClick={() => setNumber(1)}>{number}</h1>;
+  return (
+    <>
+      <input type="checkbox" value={checked} onChange={toggle} />
+      <p>{checked ? "checked" : "not checked"}</p>
+    </>
+  );
 }
 
 
@@ -151,5 +155,14 @@ function App() {
       <button onClick={() => setData([])}>Clear</button>
     </div>
   );
+}
+*/
+
+// Handling complex state with useReducer
+/*
+function App() {
+  const [number, setNumber] = useReducer((number, newNumber) => number + newNumber, 0);
+
+  return <h1 onClick={() => setNumber(1)}>{number}</h1>;
 }
 */
