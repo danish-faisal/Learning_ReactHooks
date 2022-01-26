@@ -2,13 +2,32 @@ import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function App() {
-  const [checked, toggle] = useReducer((checked) => !checked, false);
+const initialState = {
+  message: 'hi'
+}
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "yell":
+      return {
+        message: `HEY! I JUST SAID ${state.message}`
+      }
+    case "whisper":
+      return {
+        message: `excuse me, I just said ${state.message}`
+      }
+  }
+}
+
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  console.log("state", state);
   return (
     <>
-      <input type="checkbox" value={checked} onChange={toggle} />
-      <p>{checked ? "checked" : "not checked"}</p>
+      <p>Message: {state.message}</p>
+      <button onClick={() => dispatch({ type: "yell" })}>YELL</button>
+      <button onClick={() => dispatch({ type: "whisper" })}>Whisper</button>
     </>
   );
 }
@@ -104,6 +123,20 @@ function App() {
   );
 }
 
+*/
+
+// Refactoring useState to useReducer
+/*
+function App() {
+  const [checked, toggle] = useReducer((checked) => !checked, false);
+
+  return (
+    <>
+      <input type="checkbox" value={checked} onChange={toggle} />
+      <p>{checked ? "checked" : "not checked"}</p>
+    </>
+  );
+}
 */
 
 // Introducing useEffect & Working with the dependency array
