@@ -1,35 +1,28 @@
-import React, { useReducer } from 'react';
+import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const initialState = {
-  message: 'hi'
-}
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "yell":
-      return {
-        message: `HEY! I JUST SAID ${state.message}`
-      }
-    case "whisper":
-      return {
-        message: `excuse me, I just said ${state.message}`
-      }
-  }
-}
-
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const sound = useRef();
+  const color = useRef();
 
-  console.log("state", state);
+  function submit(e) {
+    e.preventDefault();
+    const soundVal = sound.current.value;
+    const colorVal = color.current.value;
+    alert(`${soundVal} sounds like ${colorVal}`);
+    sound.current.value = '';
+    colorVal.current.value = '';
+  }
+
   return (
-    <>
-      <p>Message: {state.message}</p>
-      <button onClick={() => dispatch({ type: "yell" })}>YELL</button>
-      <button onClick={() => dispatch({ type: "whisper" })}>Whisper</button>
-    </>
+    <form onSubmit={submit}>
+      <input type="text" placeholder="Sound..." ref={sound} />
+      <input type="color" ref={color} />
+      <button>Add</button>
+    </form>
   );
+
 }
 
 
@@ -197,5 +190,38 @@ function App() {
   const [number, setNumber] = useReducer((number, newNumber) => number + newNumber, 0);
 
   return <h1 onClick={() => setNumber(1)}>{number}</h1>;
+}
+*/
+
+// Dispatching actions with useReducer
+/*
+const initialState = {
+  message: 'hi'
+}
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "yell":
+      return {
+        message: `HEY! I JUST SAID ${state.message}`
+      }
+    case "whisper":
+      return {
+        message: `excuse me, I just said ${state.message}`
+      }
+  }
+}
+
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  console.log("state", state);
+  return (
+    <>
+      <p>Message: {state.message}</p>
+      <button onClick={() => dispatch({ type: "yell" })}>YELL</button>
+      <button onClick={() => dispatch({ type: "whisper" })}>Whisper</button>
+    </>
+  );
 }
 */
