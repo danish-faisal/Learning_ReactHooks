@@ -1,22 +1,23 @@
 import React, { useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { useInput } from './useInput';
 
 function App() {
-  const [sound, setSound] = useState("");
-  const [color, setColor] = useState("#000000");
+  const [titleProps, resetTitle] = useInput("");
+  const [colorProps, resetColor] = useInput("#000000");
 
   function submit(e) {
     e.preventDefault();
-    alert(`${sound} sounds like ${color}`);
-    setSound("");
-    setColor("#000000");
+    alert(`${titleProps.value} sounds like ${colorProps.value}`);
+    resetTitle();
+    resetColor();
   }
 
   return (
     <form onSubmit={submit}>
-      <input type="text" placeholder="Sound..." value={sound} onChange={(e) => setSound(e.target.value)} />
-      <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+      <input type="text" {...titleProps} placeholder="Sound..." />
+      <input type="color" {...colorProps} />
       <button>Add</button>
     </form>
   );
@@ -221,5 +222,55 @@ function App() {
       <button onClick={() => dispatch({ type: "whisper" })}>Whisper</button>
     </>
   );
+}
+*/
+
+// Managing form inputs with useRef
+/*
+function App() {
+  const sound = useRef();
+  const color = useRef();
+
+  function submit(e) {
+    e.preventDefault();
+    const soundVal = sound.current.value;
+    const colorVal = color.current.value;
+    alert(`${soundVal} sounds like ${colorVal}`);
+    sound.current.value = '';
+    colorVal.current.value = '';
+  }
+
+  return (
+    <form onSubmit={submit}>
+      <input type="text" placeholder="Sound..." ref={sound} />
+      <input type="color" ref={color} />
+      <button>Add</button>
+    </form>
+  );
+
+}
+*/
+
+// Creating controlled components with useState
+/*
+function App() {
+  const [sound, setSound] = useState("");
+  const [color, setColor] = useState("#000000");
+
+  function submit(e) {
+    e.preventDefault();
+    alert(`${sound} sounds like ${color}`);
+    setSound("");
+    setColor("#000000");
+  }
+
+  return (
+    <form onSubmit={submit}>
+      <input type="text" placeholder="Sound..." value={sound} onChange={(e) => setSound(e.target.value)} />
+      <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+      <button>Add</button>
+    </form>
+  );
+
 }
 */
