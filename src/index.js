@@ -1,25 +1,16 @@
 import React, { createContext, useRef, useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { useInput } from './useInput';
-import App from './App';
+// import { useInput } from './useInput';
+// import App from './App';
 
-const TreesContext = createContext();
-
-export const useTrees = () => useContext(TreesContext);
-
-const trees = [
-  { id: "1", type: "Maple" },
-  { id: "2", type: "Oak" },
-  { id: "3", type: "Family" },
-  { id: "4", type: "Component" }
-];
+function App() {
+  return <div></div>;
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <TreesContext.Provider value={{ trees }}>
-      <App />
-    </TreesContext.Provider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -288,4 +279,27 @@ function App() {
     </form>
   );
 }
+*/
+
+// Placing data in Context & Creating a custom Hook with context
+/*
+const TreesContext = createContext();
+
+export const useTrees = () => useContext(TreesContext);
+
+const trees = [
+  { id: "1", type: "Maple" },
+  { id: "2", type: "Oak" },
+  { id: "3", type: "Family" },
+  { id: "4", type: "Component" }
+];
+
+ReactDOM.render(
+  <React.StrictMode>
+    <TreesContext.Provider value={{ trees }}>
+      <App />
+    </TreesContext.Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 */
