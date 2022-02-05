@@ -4,14 +4,14 @@ import './App.css';
 // import { useTrees } from '.';
 
 function App() {
-  const { trees } = useTrees();
+  // const { trees } = useTrees();
 
   return (
     <div>
       <h1>Trees I've Heard of</h1>
-      <ul>
+      {/* <ul>
         {trees.map((tree) => <li key={tree.id}>{tree.type}</li>)}
-      </ul>
+      </ul> */}
     </div>
   );
 }
