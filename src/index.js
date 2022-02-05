@@ -2,6 +2,7 @@ import React, { createContext, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { useInput } from './useInput';
+import App from './App';
 
 export const TreesContext = createContext();
 
@@ -12,19 +13,9 @@ const trees = [
   { id: "4", type: "Component" }
 ];
 
-function App() {
-  return (
-    <div>
-      <h1>Trees I've Heard of</h1>
-    </div>
-  );
-
-}
-
-
 ReactDOM.render(
   <React.StrictMode>
-    <TreesContext.Provider>
+    <TreesContext.Provider value={{ trees }}>
       <App />
     </TreesContext.Provider>
   </React.StrictMode>,
