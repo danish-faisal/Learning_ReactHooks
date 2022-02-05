@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import { useContext } from 'react';
-import { TreesContext } from '.';
+// import { useContext } from 'react';
+// import {  TreesContext } from '.';
+import { useTrees } from '.';
 
 function App() {
-  const { trees } = useContext(TreesContext);
+  const { trees } = useTrees();
 
   return (
     <div>
